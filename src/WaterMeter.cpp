@@ -188,7 +188,7 @@ bool WaterMeter::isFrameAvailable(void)
 {
   if (packetAvailable)
   {
-    // Serial.println("packet received");
+    Serial.println("packet received");
     // Disable wireless reception interrupt
     detachInterrupt(digitalPinToInterrupt(CC1101_GDO0));
  
@@ -215,7 +215,7 @@ void WaterMeter::begin()
 
   reset();                              // power on CC1101
 
-  //Serial.println("Setting CC1101 registers");
+  Serial.println("Setting CC1101 registers");
   initializeRegisters();                // init CC1101 registers
 
   cmdStrobe(CC1101_SCAL);
@@ -237,7 +237,7 @@ void WaterMeter::receive(WMBusFrame * frame)
   // read preamble, should be 0x543D
   uint8_t p1 = readByteFromFifo();
   uint8_t p2 = readByteFromFifo();
-  //Serial.printf("Preamble: %02x%02x\n\r", p1, p2);
+  Serial.printf("Preamble: %02x%02x\n\r", p1, p2);
 
   uint8_t payloadLength = readByteFromFifo();
 

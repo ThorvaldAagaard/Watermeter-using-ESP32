@@ -47,15 +47,15 @@ int getWifiToConnect(int numSsid)
 {
   for (int i = 0; i < NUM_SSID_CREDENTIALS; i++)
   {
-    //Serial.println(WiFi.SSID(i));
+    Serial.println(WiFi.SSID(i));
     
     for (int j = 0; j < numSsid; ++j)
     {
-      /*Serial.print(j);
+      Serial.print(j);
       Serial.print(": ");
       Serial.print(WiFi.SSID(i).c_str());
       Serial.print(" = ");
-      Serial.println(credentials[j][0]);*/
+      Serial.println(credentials[j][0]);
       if (strcmp(WiFi.SSID(j).c_str(), credentials[i][0]) == 0)
       {
         Serial.println("Credentials found for: ");
@@ -138,11 +138,11 @@ void mqttCallback(char* topic, byte* payload, unsigned int len)
   byte *p = new byte[len];
   memcpy(p, payload, len);
   
-/*  Serial.print("MQTT-RECV: ");
+  Serial.print("MQTT-RECV: ");
   Serial.print(topic);
   Serial.print(" ");
   Serial.println((char)payload[0]); // FIXME LEN
-*/
+
   if (strstr(topic, "/smarthomeNG/start"))
   {
     if (len == 4) // True
@@ -181,6 +181,9 @@ bool mqttConnect()
 void  mqttMyData(const char* debug_str)
 {
     String s="watermeter/0/sensor/mydata";
+    Serial.print("publishing: ");
+    Serial.print(s);
+    Serial.print(debug_str);
     mqttClient.publish(s.c_str(), debug_str, true);
 }
 
@@ -298,20 +301,20 @@ void loop()
   switch (ControlState)
   {
     case StateInit:
-      //Serial.println("StateInit:");
+      Serial.println("StateInit:");
       WiFi.mode(WIFI_STA);
 
       ControlState = StateNotConnected;
       break;
 
     case StateNotConnected:
-      //Serial.println("StateNotConnected:");
+      Serial.println("StateNotConnected:");
 
       ControlState = StateWifiConnect;
       break;
       
     case StateWifiConnect:
-      //Serial.println("StateWifiConnect:");
+      Serial.println("StateWifiConnect:");
       // station mode
       ConnectWifi();
 
