@@ -30,7 +30,7 @@ Some cables
 | GD2 | Not Connected |
 
 
-<img height="300" src="images/device.jpg"> <img height="300" src="images/wires.jpg">
+<img height="300" src="images/device.png"> <img height="300" src="images/wires.png">
 
 ### Decryption key
 First of all you need the decryption key from you water supplier. They normally provide it encrypted, so the first step is to extract the information from the file, and you can use the kem-decrypto.py
